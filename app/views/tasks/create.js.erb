@@ -1,0 +1,15 @@
+<% if @task.complete? %>
+	$(".complete-tasks").append("<%= j render partial: 'task', locals: {task: @task} %>");
+	$("#hechas").effect("highlight", {}, 3000);
+	$("#hechas").html('<p>Tareas (<%= @tasks.incomplete.count %>)</p>');
+<% else %>
+	$(".my-tasks").append("<%= j render partial: 'task', locals: {task: @task} %>");
+	$("#porhacer").effect("highlight", {}, 3000);
+	$("#porhacer").html('<p>Tareas (<%= @tasks.incomplete.count %>)</p>');
+<% end %>
+
+$(document).scrollTop( $("div#<%= dom_id(@task) %>") );
+
+$(".new-task-button").show();
+
+$("form").hide();

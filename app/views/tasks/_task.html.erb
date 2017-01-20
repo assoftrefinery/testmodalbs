@@ -1,0 +1,51 @@
+<script>
+$(function() {
+$("#accordion:nth-child(1n)" ).accordion({
+heightStyle: "content",
+active: false,
+collapsible: true
+});
+});
+</script>
+
+<%= div_for task do %>
+		<div class="well" style="background:#477FB8;border-radius:10px;">
+			
+				<% if task.complete? %>
+					<div class="bs-callout bs-callout-success well" style="border-radius: 5px;">
+						<h3 style="text-decoration: line-through;"><%= task.name %></h3>
+						<span class="badge hi hi-ban on hi-clock-o"> <%= task.updated_at.strftime('%d-%m-%Y') %> / <%= task.updated_at.strftime('%H:%M') %></span>
+					</div>
+				<% else %>
+					<div class="bs-callout bs-callout-danger well" style="border-radius: 5px;">
+						<h3><%= task.name %></h3>
+						<span class="badge hi hi-clock-o"> <%= task.created_at.strftime('%d-%m-%Y') %> / <%= task.created_at.strftime('%H:%M') %></span>
+					</div>
+				<% end %>
+						
+						<table class="table table-condensed">
+							<tbody>
+							<tr>
+								<td><%= link_to '', edit_task_path(task), remote: true, :class =>  "btn btn-primary btn-block hi hi-pencil hi-2x", :style => 'border-radius:5px;' %></td>
+								<td><%= link_to '', complete_path(task), remote: true, :class =>   "btn btn-primary btn-block hi hi-check hi-2x",  :style => 'border-radius:5px;' %></td>
+								<td><%= link_to '', task, remote: true, method: :delete, :class => "btn btn-primary btn-block hi hi-times hi-2x",  :style => 'border-radius:5px;' %></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<%= link_to '', edit_task_path(task), remote: true, :class =>  "btn btn-primary btn-block hi hi-camera hi-2x", :style => 'border-radius:5px;' %>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+						
+						<% if task.foto.present? %>
+							<div id="accordion">
+								<h3 align="center">Imagen</h3>
+								<div>
+									<%= image_tag task.foto, :class => 'img-responsive center-block' %>
+								</div>
+							</div>		
+						<% end %>
+						 
+		</div>	
+<% end %>

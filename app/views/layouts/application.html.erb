@@ -1,0 +1,97 @@
+<!DOCTYPE html lang="es">
+<html>
+<head>
+	
+<title>Tareas de Fran</title>
+
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta charset="UTF-8"> 
+ 
+<!-- Latest compiled and minified CSS -->
+<%= stylesheet_link_tag "/assets/bootstrap.min.css" %>
+<!-- Hippicons (local) -->
+<%= stylesheet_link_tag "/assets/hippicons-min.css" %>
+<!-- jQuery UI CSS (local) -->
+<%= stylesheet_link_tag "/assets/jquery-ui.min.css" %>
+<!-- jQuery (local) -->
+<%= javascript_include_tag "/assets/jquery-2.2.4.min.js" %>
+<!-- jQuery UI (local) -->
+<%= javascript_include_tag "/assets/jquery-ui.min.js" %>
+<!-- Rails JS (local) -->
+<%= javascript_include_tag "/assets/rails.min.js" %>
+<!-- Bootstrap JS (local) -->
+<%= javascript_include_tag "/assets/bootstrap.min.js" %>
+<!-- AJAX Remotipart para subir archivos -->
+<%= javascript_include_tag "/assets/jquery.iframe-transport.js" %>
+<!-- AJAX Remotipart para subir archivos -->
+<%= javascript_include_tag "/assets/jquery.remotipart.js" %>
+ 
+<!-- data confirm modal -->
+<script src="/assets/data-confirm-modal.js"></script>
+<!-- opciones integradas en data-confirm-modal.js -->
+
+<!-- Para los dialogos modales de confirmacion -->
+<script>
+/*dataConfirmModal.setDefaults({
+         title: '¿Estas seguro?',
+         commit: 'Confirmar',
+         cancel: 'Cancelar',
+         fade:   false,
+         verifyClass: 'form-control',
+       });*/
+ </script>
+ 
+ <!-- indicador de carga de pagina, posicion -->
+ <script>
+	$(window).load(function(){$('#cover').fadeOut(1000);});
+</script>
+
+<%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'default', 'data-turbolinks-track' => true %>
+ 
+<%= csrf_meta_tags %>
+  
+  
+  	<!-- <nav class="navbar navbar-inverse"> -->
+  	<nav class="navbar navbar-inverse navbar-fixed-top">
+  		
+			  <div class="container-fluid">
+					    <div class="navbar-header">
+					      		<%= link_to '', root_path, :class => 'navbar-brand hi hi-refresh hi-2x' %>
+					      		
+					      		<div class="cp-spinner cp-eclipse"></div>
+					      		
+					      		
+					      		<div style="line-height: 48px;"> <%= Time.now.strftime("%d-%m-%Y %H:%M") %> </div>
+					      		
+					    </div>
+			    <div id="navbar">
+			    				
+					      <ul class="nav navbar-nav navbar-right">
+					      		 
+					        	 <li class="active"><%= link_to 'Nueva Tarea', new_task_path, remote: true, :class => 'btn btn-primary btn-block'%></li>
+					      </ul>
+			    </div>
+			  </div>
+	</nav>
+	
+<div id="cover" style="z-index:9999;"></div>
+	
+</head>
+	<body style="padding-top:100px; ">
+	
+			<%= yield :top_content %>
+			
+					<div class="container">
+						
+						<h1><%= yield :header %></h1>
+						
+						<%= render partial: "shared/flashmessages", flash: flash %>
+						
+						<div id="top"></div>
+						
+						<%= yield %>
+						
+					</div>
+	</body>
+</html>

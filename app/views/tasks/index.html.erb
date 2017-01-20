@@ -1,0 +1,40 @@
+<script>
+	/* Muestra el spinner cuando se ejecuta una accion AJAX*/
+	$( document ).ready(function() {
+	  // esconder spinner
+	  $(".cp-spinner").hide();
+	  // mostrar spinner al iniciarse llamada AJAX
+	  $(document).ajaxStart(function(){
+	    $(".cp-spinner").show();
+	  });
+	  // esconder spinner al finalizar la llamada AJAX
+	  $(document).ajaxStop(function(){
+	    $(".cp-spinner").hide();
+	  });
+	});
+</script>
+
+<%= link_to 'Nueva Tarea', new_task_path, remote: true, :class => 'new-task-button btn btn-primary btn-block' %>
+
+<br>
+
+<div class="jumbotron">
+	<div class="my-tasks">
+		
+		<p style="border-radius:5px;" id="porhacer">Tareas (<%= @tasks.incomplete.count %>)</p>
+				<% @tasks.incomplete.each do |task| %>
+			    	<%= render task %>
+			    <% end %>
+	</div>
+</div>
+
+<div class="jumbotron">
+	<div class="complete-tasks">
+	
+		<p style="border-radius:5px;" id="hechas">Tareas completadas (<%= @tasks.complete.count %>)</p>
+			    <% @tasks.complete.each do |task| %>
+			    	<!-- <h3><%= task.name %></h3> -->
+			    	<%= render task %>
+			    <% end %>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+$("div#<%= dom_id(@task) %>").slideUp(350);
+
+$(".complete-tasks").append("<%= j render partial: 'task', locals: {task: @task} %>");
+
+$("div#<%= dom_id(@task) %>").find("h3").css("text-decoration", "line-through");
+
+$("#hechas").html('<p style="border-radius:5px;" id="hechas">Tareas completadas (<%= @tasks.complete.count %>)</p>');
+
+$("#porhacer").html('<p style="border-radius:5px;" id="porhacer">Tareas (<%= @tasks.incomplete.count %>)</p>');

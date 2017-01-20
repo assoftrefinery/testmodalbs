@@ -1,0 +1,9 @@
+$("form").hide();
+$("div#<%= dom_id(@task) %>").append("<%= j render 'form' %>");
+
+/*$(document).scrollTop( $("div#<%= dom_id(@task) %>") );*/
+
+/*$("form").toggle( "slow", function() {} );*/
+/*$(document).scrollTop( $("#new_task") );*/  
+
+/* si ponemos .replaceWith en vez de append no se "actualiza" visualmente el formulario*/

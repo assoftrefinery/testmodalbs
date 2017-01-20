@@ -1,0 +1,3 @@
+$('div#<%= dom_id(@task) %>').slideUp(350);
+$("#hechas").html('<p>Tareas completadas (<%= @tasks.complete.count %>)</p>');
+$("#porhacer").html('<p>Tareas (<%= @tasks.incomplete.count %>)</p>');

@@ -1,0 +1,20 @@
+/* problema: sticky top y al pulsar nuevo, que vaya al form
+
+<!-- _task.html.erb -->
+
+<%= div_for task do %>
+		<div class="well" style="background:#477FB8;border-radius:10px;">
+			
+				<% if task.complete? %>
+					<h3 style="text-decoration: line-through;"><%= task.name %></h3>
+				<% else %>
+					<h3><%= task.name %></h3>
+				<% end %>
+						
+						  <ul>
+						   <li><%= link_to "Editar", edit_task_path(task), remote: true %></li>
+						   <li><%= link_to "Completar", complete_path(task), remote: true %></li>
+						   <li><%= link_to "Eliminar", task, remote: true, method: :delete %></li>
+						  </ul>
+		</div>
+<% end %>
